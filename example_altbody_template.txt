@@ -1,0 +1,7 @@
+
+Hello, %name%
+
+You have new message
+
+---
+WBR, %WBR%
