@@ -9,9 +9,13 @@ class PythonMailer(object):
 
     _TemplateType = 'text/html'
 
+    _Body = None
+
     _AltTemplate = None
 
     _AltTemplateType = 'text/plain'
+
+    _AltBody = None
 
     _MSG = None
 
@@ -25,10 +29,16 @@ class PythonMailer(object):
 
     def __FillBody(self):
         """Set message bodt from templates"""
-        self._MSG.Body = self._Template
+        if self._Body is None:
+            self._MSG.Body = self._Template
+        else:
+            self._MSG.Body = self._Body
         self._MSG.BodyType = self._TemplateType
         if self._AltTemplate is not None:
-            self._MSG.AltBody = self._AltTemplate
+            if self._AltBody is None:
+                self._MSG.AltBody = self._AltTemplate
+            else:
+                self._MSG.AltBody = self._AltBody
             self._MSG.AltBodyType = self._AltTemplateType
 
     def Send(self):
@@ -53,10 +63,10 @@ class PythonMailer(object):
         if self._Template is None or data is None:
             return False
         for key, value in data.iteritems():
-            self._Template = self._Template.replace(key, value)
+            self._Body = self._Template.replace(key, value)
         if self._AltTemplate is not None:
             for key, value in data.iteritems():
-                self._AltTemplate = self._AltTemplate.replace(key, value)
+                self._AltBody = self._AltTemplate.replace(key, value)
         return True
 
     def setAddresess(self, data):

@@ -49,18 +49,30 @@ mailer.Replace({
 mailer.setMessageOptions(msgOptions)
 mailer.setSenderOptions(senderOptions)
 
-# mailer.printMessage()
-# exit(1)
+try:
+    rcpt_ok, rcpt_false = mailer.Send()
+except (MailerExceptions.SenderExeption, MailerExceptions.MessageExeption) as e:
+    print e.message
+
+mailer.Replace({
+    '%name%': 'Jone 2 & Jane 2',
+    '%site%': "Jone's Mom",
+})
 
 try:
     rcpt_ok, rcpt_false = mailer.Send()
 except (MailerExceptions.SenderExeption, MailerExceptions.MessageExeption) as e:
     print e.message
-#    if isinstance(e, PMSender.PMSenderExeption) or isinstance(e, PMMessage.PMMessageExeption):
-#      print e.message
-#      exit(255)
-#    else:
-#      raise e
+
+mailer.Replace({
+    '%name%': 'Jone 3 & Jane 3',
+    '%site%': "Jone's Mom",
+})
+
+try:
+    rcpt_ok, rcpt_false = mailer.Send()
+except (MailerExceptions.SenderExeption, MailerExceptions.MessageExeption) as e:
+    print e.message
 
 print "Sended for:"
 for e in rcpt_ok:
