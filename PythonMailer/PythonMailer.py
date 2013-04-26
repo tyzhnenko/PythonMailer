@@ -5,6 +5,8 @@ from MailerSender import MailerSender
 
 class PythonMailer(object):
 
+    __version__ = '0.41'
+
     _Template = None
 
     _TemplateType = 'text/html'
