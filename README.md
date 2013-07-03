@@ -54,7 +54,7 @@ rcpt_ok, rcpt_false = mailer.Send()
 
 ## Roadmap
 
-* Attachmets
-* Background sending by threads
-* DKIM 
-* Relay mode. Sender can send message directly to MX
+* Attachmets (#2)
+* Background sending by threads (#1)
+* DKIM (#3)
+* Relay mode. Sender can send message directly to MX (#4)
